@@ -1,0 +1,7 @@
+.vscode
+
+# OS
+.DS_Store
+.tmp
+
+.env

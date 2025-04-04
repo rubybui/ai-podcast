@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validateRequest() middleware error should throw error 1`] = `
+{
+  "message": "firstName should not be empty",
+  "statusCode": 400,
+}
+`;

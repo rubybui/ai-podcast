@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:5.0
+    container_name: mongo
+    restart: unless-stopped
+    volumes:
+      - db:/data/db
+  app:
+    depends_on:
+      - mongodb
+    env_file: ./.env
+    image: ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:

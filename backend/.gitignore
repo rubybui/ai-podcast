@@ -1,0 +1,15 @@
+dist
+build
+node_modules
+.env
+
+tmp/
+
+# Yarn
+.cache
+
+# OS
+.DS_Store
+.tmp
+
+results
