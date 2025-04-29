@@ -38,5 +38,15 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            echo "SPEECH_KEY=${{ secrets.SPEECH_KEY }}" > .env && echo "SPEECH_REGION=${{ secrets.SPEECH_REGION }}" >> .env && echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env && echo "S3_ACCESS_KEY=${{ secrets.S3_ACCESS_KEY }}" >> .env && echo "S3_SECRET_KEY=${{ secrets.S3_SECRET_KEY }}" >> .env && echo "S3_REGION=${{ secrets.S3_REGION }}" >> .env && echo "S3_BUCKET_NAME=${{ secrets.S3_BUCKET_NAME }}" >> .env && echo "CODA_ACCESS_TOKEN=${{ secrets.CODA_ACCESS_TOKEN }}" >> .env && echo "CODA_REPORT_TABLE_ACCESS_TOKEN=${{ secrets.CODA_ACCESS_TOKEN }}" >> .env
-            docker compose pull && docker compose up -d
+            cat <<EOF > .env SPEECH_KEY=${{ secrets.SPEECH_KEY }}
+SPEECH_REGION=${{ secrets.SPEECH_REGION }}
+MONGO_URI=${{ secrets.MONGO_URI }}
+S3_ACCESS_KEY=${{ secrets.S3_ACCESS_KEY }}
+S3_SECRET_KEY=${{ secrets.S3_SECRET_KEY }}
+S3_REGION=${{ secrets.S3_REGION }}
+S3_BUCKET_NAME=${{ secrets.S3_BUCKET_NAME }}
+EOF
+
+            docker compose pull
+            docker compose up -d
+

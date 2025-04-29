@@ -12,7 +12,6 @@ import {
   uploadRouter,
   versionRouter,
   userRouter,
-  codaRouter,
   playlistRouter,
 } from "./routes";
 
@@ -28,7 +27,6 @@ api.use("/categories", categoryRouter);
 api.use("/upload", uploadRouter);
 api.use("/variants", variantRouter);
 api.use("/versions", versionRouter);
-api.use("/survey", codaRouter);
 api.use("/users", userRouter);
 api.use("/playlists", playlistRouter);
 

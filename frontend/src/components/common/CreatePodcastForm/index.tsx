@@ -6,6 +6,7 @@ import {
   Grid,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   TextField,
   Typography
@@ -19,6 +20,7 @@ import UploadButton from "../UploadButton";
 import UnsplashImagePicker from "../UnsplashImagePicker";
 
 import { IUnplashPhoto } from "./types";
+import CreateCategoryForm from "@/components/common/CreateCategoryForm"; // correct path if needed
 
 import { ICategory } from "@/types";
 
@@ -32,6 +34,7 @@ const MenuProps = {
     }
   }
 };
+
 interface Props {
   categoryList: ICategory[];
 }
@@ -47,6 +50,7 @@ const CreatePodcastForm = ({ categoryList }: Props) => {
   const [image, setImage] = useState<string>("");
   const [openPicker, setOpenPicker] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [openCreateCategoryModal, setOpenCreateCategoryModal] = useState(false);
 
   const handleFileChange = (filePath: string) => {
     setValue("primaryImage", filePath);
@@ -73,6 +77,7 @@ const CreatePodcastForm = ({ categoryList }: Props) => {
             error={!!errors?.name}
             helperText={(errors?.name?.message as string) || undefined}
           />
+
           <FormControl
             fullWidth
             variant="standard"
@@ -82,6 +87,7 @@ const CreatePodcastForm = ({ categoryList }: Props) => {
             <InputLabel required id="demo-multiple-name-label">
               Category
             </InputLabel>
+
             <Select
               defaultValue={[]}
               labelId="demo-multiple-name-label"
@@ -96,12 +102,26 @@ const CreatePodcastForm = ({ categoryList }: Props) => {
                 </MenuItem>
               ))}
             </Select>
+
             {!!errors?.categories && (
               <FormHelperText>
                 {errors?.categories?.message as string}
               </FormHelperText>
             )}
           </FormControl>
+
+          {/* If there are no categories, show Create Category button */}
+          {categoryList.length === 0 && (
+            <Box mt={2}>
+              <Button
+                variant="outlined"
+                onClick={() => setOpenCreateCategoryModal(true)}
+              >
+                Create Category
+              </Button>
+            </Box>
+          )}
+
           <TextField
             required
             fullWidth
@@ -176,6 +196,30 @@ const CreatePodcastForm = ({ categoryList }: Props) => {
           )}
         </Box>
       </Grid>
+
+      {/* Modal to create category */}
+      <Modal
+        open={openCreateCategoryModal}
+        onClose={() => setOpenCreateCategoryModal(false)}
+        aria-labelledby="create-category-modal"
+        aria-describedby="create-category-form"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <CreateCategoryForm />
+        </Box>
+      </Modal>
     </Grid>
   );
 };
