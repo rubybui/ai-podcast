@@ -17,6 +17,4 @@ export const AppConfig = {
   },
   port: process.env.PORT || 3000,
   nodeEnv: process.env.NODE_ENV,
-  coda: process.env.CODA_ACCESS_TOKEN,
-  codaReportData: process.env.CODA_REPORT_TABLE_ACCESS_TOKEN,
 };

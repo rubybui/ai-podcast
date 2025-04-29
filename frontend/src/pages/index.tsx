@@ -10,7 +10,6 @@ import { IPodcast, ICategory } from "@/types";
 import useResponsive from "@/utils/useResponsive";
 import RecentlyPlayed from "@/components/common/RecentlyPlay";
 import CardSlider from "@/components/common/CardSlider";
-import ContentSurvey from "@/components/ContentSurvey";
 
 const BOOK_CATE_ID = "640aa679d1ed6bcbb5e65e1d";
 const HORROR_CATE_ID = "643616b61a9b62193843bcc1";
@@ -116,8 +115,6 @@ const Home: NextPageWithLayout<Props> = ({
           variant="trending"
           cards={trendingPodcasts}
         />
-
-        <ContentSurvey />
 
         <CardSlider title="Latest" cards={latestPodcasts} />
 
