@@ -58,6 +58,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd ~/backend
-            echo "SPEECH_KEY=${{ secrets.SPEECH_KEY }}" > .env && echo "SPEECH_REGION=${{ secrets.SPEECH_REGION }}" >> .env && echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env && echo "S3_ACCESS_KEY=${{ secrets.S3_ACCESS_KEY }}" >> .env && echo "S3_SECRET_KEY=${{ secrets.S3_SECRET_KEY }}" >> .env && echo "S3_REGION=${{ secrets.S3_REGION }}" >> .env && echo "S3_BUCKET_NAME=${{ secrets.S3_BUCKET_NAME }}" >> .env
+            echo "SPEECH_KEY=${{ secrets.SPEECH_KEY }}" > .env && echo "SPEECH_REGION=${{ secrets.SPEECH_REGION }}" >> .env && echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env && echo "S3_ACCESS_KEY=${{ secrets.S3_ACCESS_KEY }}" >> .env && echo "S3_SECRET_KEY=${{ secrets.S3_SECRET_KEY }}" >> .env && echo "S3_REGION=${{ secrets.S3_REGION }}" >> .env && echo "S3_BUCKET_NAME=${{ secrets.S3_BUCKET_NAME }}" >> .env && echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> .env && echo "DOCKERHUB_REPO=${{ secrets.DOCKERHUB_REPO }}" >> .env
             docker compose pull
             docker compose up -d
