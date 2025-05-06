@@ -10,7 +10,7 @@ services:
   app:
     depends_on:
       - mongodb
-    env_file: .env
+    env_file: ./.env
     image: ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:latest
     restart: unless-stopped
     ports:
