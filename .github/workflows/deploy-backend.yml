@@ -39,6 +39,15 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: echo "✅ SSH success"
 
+      - name: Copy docker-compose.yml to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: "docker-compose.yml"
+          target: "~/"
+
       - name: Pull and run docker
         uses: appleboy/ssh-action@master
         with:
