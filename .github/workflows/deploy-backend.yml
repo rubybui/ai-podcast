@@ -45,5 +45,6 @@ jobs:
             echo "S3_SECRET_KEY=${{ secrets.S3_SECRET_KEY }}" >> .env
             echo "S3_REGION=${{ secrets.S3_REGION }}" >> .env
             echo "S3_BUCKET_NAME=${{ secrets.S3_BUCKET_NAME }}" >> .env
+            cat .env
             docker compose pull
             docker compose up -d
