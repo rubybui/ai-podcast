@@ -22,6 +22,7 @@ app.options('*', cors());
 app.use(customApiResponse);
 
 const api = express.Router();
+
 app.use("/api", api);
 api.use("/podcasts", podcastRouter);
 api.use("/categories", categoryRouter);
