@@ -17,11 +17,8 @@ import {
 
 export const app = express();
 app.use(bodyParser.json());
-app.use(cors({
-  origin: 'https://ai-podcast-theta.vercel.app', // or '*' for all origins (not recommended in prod)
-  methods: ['GET', 'POST'],
-  credentials: true,
-}));
+app.use(cors());  
+app.options('*', cors());
 app.use(customApiResponse);
 
 const api = express.Router();
