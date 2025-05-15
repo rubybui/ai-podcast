@@ -1,3 +1,5 @@
+import https from 'https'; // 👈 Add this import at the top
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FormProvider, useForm } from "react-hook-form";
@@ -26,10 +28,13 @@ interface Props {
   categoryList: ICategory[];
 }
 
+
 export async function getStaticProps() {
-  console.log("testing config", AppConfig)
+  const agent = new https.Agent({ rejectUnauthorized: false }); // 👈 Disable SSL check
+
   const response = await fetch(AppConfig.apiUrl + "/categories", {
-    method: "GET"
+    method: "GET",
+    agent, // 👈 Add this line
   });
 
   const json = await response.json();
@@ -37,11 +42,10 @@ export async function getStaticProps() {
 
   return {
     props: {
-      categoryList: data as ICategory[]
-    }
+      categoryList: data as ICategory[],
+    },
   };
 }
-
 const CreatePodcastPage: NextPageWithLayout<Props> = ({ categoryList }) => {
   //States
   const { data: session, status } = useSession();
